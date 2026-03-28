@@ -1,0 +1,138 @@
+{
+  "forensic_tools": {
+    "analyse_disque": {
+      "outils": ["Autopsy", "FTK Imager", "Sleuth Kit", "dd"],
+      "description": "Extraction fichiers supprimés, timeline système de fichiers, artefacts navigateur",
+      "duree_estimee": "4-8h",
+      "competences_requises": ["disk_forensic", "filesystem"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "analyse_reseau": {
+      "outils": ["Wireshark", "NetworkMiner", "tcpdump", "Zeek"],
+      "description": "Capture et analyse du trafic réseau, détection d'intrusion, exfiltration de données",
+      "duree_estimee": "2-6h",
+      "competences_requises": ["reseau", "forensic_reseau"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "analyse_logs": {
+      "outils": ["Splunk", "ELK Stack", "grep/awk", "Logstash"],
+      "description": "Corrélation d'événements, construction de timeline, détection d'anomalies",
+      "duree_estimee": "3-5h",
+      "competences_requises": ["analyse_logs", "SIEM"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "malware_analysis": {
+      "outils": ["IDA Pro", "Ghidra", "Cuckoo Sandbox", "YARA"],
+      "description": "Reverse engineering, analyse comportementale, extraction d'indicateurs de compromission",
+      "duree_estimee": "8-16h",
+      "competences_requises": ["malware", "reverse_engineering"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "analyse_memoire": {
+      "outils": ["Volatility", "Rekall", "WinPmem"],
+      "description": "Analyse mémoire RAM, extraction processus, artefacts en mémoire",
+      "duree_estimee": "3-6h",
+      "competences_requises": ["memory_forensic"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "analyse_mobile": {
+      "outils": ["Cellebrite UFED", "Oxygen Forensics", "Andriller"],
+      "description": "Extraction données mobiles, messages, historique de localisation",
+      "duree_estimee": "4-8h",
+      "competences_requises": ["mobile", "forensic_mobile"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "analyse_email": {
+      "outils": ["MailXaminer", "OSForensics", "MsgViewer"],
+      "description": "Analyse d'en-têtes email, détection phishing, reconstruction de conversations",
+      "duree_estimee": "2-4h",
+      "competences_requises": ["messagerie", "phishing"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "analyse_base_donnees": {
+      "outils": ["DB Browser for SQLite", "PostgreSQL Forensics", "MySQL binlog"],
+      "description": "Analyse des transactions, détection de modifications frauduleuses",
+      "duree_estimee": "4-8h",
+      "competences_requises": ["base_de_donnees", "forensic_bancaire"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "analyse_cloud": {
+      "outils": ["CloudTrail (AWS)", "Azure Activity Log", "GCP Audit Logs"],
+      "description": "Analyse des logs cloud, accès non autorisés, exfiltration via cloud",
+      "duree_estimee": "3-6h",
+      "competences_requises": ["cloud", "forensic_reseau"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "hash_verification": {
+      "outils": ["sha256sum", "md5sum", "HashMyFiles"],
+      "description": "Vérification d'intégrité des fichiers, chaîne de custody",
+      "duree_estimee": "0.5-1h",
+      "competences_requises": ["forensic"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "analyse_registre": {
+      "outils": ["RegRipper", "Registry Explorer", "Eric Zimmerman Tools"],
+      "description": "Analyse du registre Windows, persistance malware, artefacts utilisateur",
+      "duree_estimee": "2-4h",
+      "competences_requises": ["windows_forensic", "disk_forensic"],
+      "normes": ["ISO/IEC 27037"]
+    },
+    "timeline_analysis": {
+      "outils": ["Plaso/Log2timeline", "Timesketch", "Autopsy Timeline"],
+      "description": "Reconstruction de la chronologie des événements à partir de multiples sources",
+      "duree_estimee": "3-5h",
+      "competences_requises": ["disk_forensic", "analyse_logs"],
+      "normes": ["ISO/IEC 27037"]
+    }
+  },
+  "hypothesis_mapping": {
+    "intrusion_systeme": {
+      "description": "Accès non autorisé à un système informatique",
+      "outils_associes": ["analyse_logs", "analyse_reseau", "malware_analysis", "analyse_memoire"],
+      "indicateurs": ["connexion_suspecte", "privilege_escalation", "lateral_movement"]
+    },
+    "fraude_bancaire": {
+      "description": "Manipulation frauduleuse de transactions financières",
+      "outils_associes": ["analyse_logs", "analyse_disque", "analyse_base_donnees", "timeline_analysis"],
+      "indicateurs": ["virement_suspect", "modification_compte", "acces_non_autorise"]
+    },
+    "vol_donnees": {
+      "description": "Exfiltration non autorisée de données sensibles",
+      "outils_associes": ["analyse_disque", "analyse_reseau", "analyse_logs", "analyse_cloud"],
+      "indicateurs": ["transfert_anormal", "compression_suspecte", "acces_donnees_sensibles"]
+    },
+    "manipulation_timeline": {
+      "description": "Falsification des horodatages ou de la chronologie des événements",
+      "outils_associes": ["timeline_analysis", "analyse_disque", "hash_verification"],
+      "indicateurs": ["timestamps_incoherents", "modification_metadonnees", "antiforensic"]
+    },
+    "infection_malware": {
+      "description": "Présence d'un logiciel malveillant sur le système",
+      "outils_associes": ["malware_analysis", "analyse_memoire", "analyse_registre", "analyse_reseau"],
+      "indicateurs": ["processus_suspect", "connexion_c2", "persistance_suspecte"]
+    },
+    "phishing": {
+      "description": "Tentative d'hameçonnage via email ou site frauduleux",
+      "outils_associes": ["analyse_email", "analyse_reseau", "analyse_logs"],
+      "indicateurs": ["email_suspect", "url_malveillante", "credential_harvesting"]
+    },
+    "acces_interne_frauduleux": {
+      "description": "Abus de privilèges par un utilisateur interne",
+      "outils_associes": ["analyse_logs", "analyse_base_donnees", "timeline_analysis", "analyse_disque"],
+      "indicateurs": ["acces_hors_horaire", "modification_donnees", "copie_donnees"]
+    },
+    "ransomware": {
+      "description": "Chiffrement malveillant des données contre rançon",
+      "outils_associes": ["malware_analysis", "analyse_reseau", "analyse_disque", "analyse_memoire"],
+      "indicateurs": ["chiffrement_massif", "note_rancon", "connexion_c2", "sauvegarde_supprimee"]
+    }
+  },
+  "case_type_to_hypotheses": {
+    "fraude_bancaire": ["fraude_bancaire", "acces_interne_frauduleux", "vol_donnees"],
+    "intrusion_reseau": ["intrusion_systeme", "vol_donnees", "infection_malware"],
+    "malware": ["infection_malware", "ransomware", "intrusion_systeme"],
+    "phishing": ["phishing", "intrusion_systeme", "vol_donnees"],
+    "incident_interne": ["acces_interne_frauduleux", "vol_donnees", "fraude_bancaire"],
+    "generic": ["intrusion_systeme", "vol_donnees", "manipulation_timeline"]
+  }
+}
