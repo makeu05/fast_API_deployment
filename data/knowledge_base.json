@@ -83,7 +83,49 @@
       "duree_estimee": "3-5h",
       "competences_requises": ["disk_forensic", "analyse_logs"],
       "normes": ["ISO/IEC 27037"]
-    }
+    },
+    "analyse_steganographie": {
+  "outils": ["Steghide", "OpenStego", "StegSpy", "zsteg"],
+  "description": "Détection de données cachées dans images/fichiers audio",
+  "duree_estimee": "2-4h",
+  "competences_requises": ["steganographie", "forensic"],
+  "normes": ["ISO/IEC 27037"]
+},
+"analyse_metadonnees": {
+  "outils": ["ExifTool", "Metagoofil", "FOCA"],
+  "description": "Extraction métadonnées fichiers Office, PDF, images",
+  "duree_estimee": "1-3h",
+  "competences_requises": ["forensic", "OSINT"],
+  "normes": ["ISO/IEC 27037"]
+},
+"analyse_trafic_chiffre": {
+  "outils": ["SSL Strip", "mitmproxy", "Bettercap"],
+  "description": "Analyse trafic HTTPS, détection certificats suspects",
+  "duree_estimee": "3-6h",
+  "competences_requises": ["reseau", "cryptographie"],
+  "normes": ["ISO/IEC 27037"]
+},
+"analyse_active_directory": {
+  "outils": ["BloodHound", "SharpHound", "PingCastle", "ADExplorer"],
+  "description": "Audit Active Directory, détection privilege escalation",
+  "duree_estimee": "4-8h",
+  "competences_requises": ["windows_forensic", "active_directory"],
+  "normes": ["ISO/IEC 27037"]
+},
+"cryptanalyse": {
+  "outils": ["Hashcat", "John the Ripper", "CyberChef"],
+  "description": "Cassage mots de passe, déchiffrement données",
+  "duree_estimee": "4-24h",
+  "competences_requises": ["cryptographie", "forensic"],
+  "normes": ["ISO/IEC 27037"]
+},
+"analyse_firmware": {
+  "outils": ["Binwalk", "Firmwalker", "FACT"],
+  "description": "Analyse firmware IoT, extraction systèmes de fichiers",
+  "duree_estimee": "6-12h",
+  "competences_requises": ["reverse_engineering", "IoT"],
+  "normes": ["ISO/IEC 27037"]
+}
   },
   "hypothesis_mapping": {
     "intrusion_systeme": {
